@@ -9,6 +9,8 @@ target_sources(libSceIcu PRIVATE Space.cpp)
 target_sources(libSceIcu PRIVATE Utf8.cpp)
 target_sources(libSceIcu PRIVATE Resource.cpp)
 
+target_sources(libSceIcu PRIVATE ScalarHelpers.cpp)
+
 if(BUILD_TESTING)
     add_test_executable(guest_icu_utf8_tests ${LIBS_INCLUDE_DIR}/tests/GuestIcuUtf8.cpp)
     target_include_directories(guest_icu_utf8_tests PRIVATE ${LIBS_INCLUDE_DIR})
@@ -109,6 +111,19 @@ if(BUILD_TESTING)
     set_tests_properties(guest_icu_resource PROPERTIES TIMEOUT 10)
     if(WIN32)
         set_tests_properties(guest_icu_resource PROPERTIES ENVIRONMENT_MODIFICATION
+            "PATH=path_list_prepend:$<TARGET_FILE_DIR:libSceIcu>")
+    endif()
+endif()
+
+if(BUILD_TESTING)
+    add_test_executable(guest_icu_scalar_helpers_tests ${CMAKE_CURRENT_SOURCE_DIR}/tests/ScalarHelpers.cpp)
+    target_include_directories(guest_icu_scalar_helpers_tests PRIVATE ${LIBS_INCLUDE_DIR})
+    target_link_libraries(guest_icu_scalar_helpers_tests PRIVATE libSceIcu)
+    configure_windows_unwind(guest_icu_scalar_helpers_tests)
+    add_test(NAME guest_icu_scalar_helpers COMMAND guest_icu_scalar_helpers_tests)
+    set_tests_properties(guest_icu_scalar_helpers PROPERTIES TIMEOUT 20)
+    if(WIN32)
+        set_tests_properties(guest_icu_scalar_helpers PROPERTIES ENVIRONMENT_MODIFICATION
             "PATH=path_list_prepend:$<TARGET_FILE_DIR:libSceIcu>")
     endif()
 endif()
