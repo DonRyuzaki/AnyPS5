@@ -2,7 +2,7 @@ name: Merged PR Discord notifications
 
 on:
   schedule:
-    - cron: '12,27,42,57 * * * *'
+    - cron: '4,19,34,49 * * * *'
   workflow_dispatch:
 
 permissions: {}
