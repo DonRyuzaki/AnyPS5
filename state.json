@@ -1,8 +1,12 @@
 {
-  "version": 1,
-  "upstream": "boykopovar/AnyPS5",
   "author": "DonRyuzaki",
   "delivered": {},
-  "pending": null,
-  "heartbeat_at": "2026-11-01T10:39:18Z"
+  "heartbeat_at": "2026-11-01T10:39:18Z",
+  "pending": {
+    "merged_at": "2026-11-01T09:40:34Z",
+    "number": 13910,
+    "prepared_at": "2026-11-01T10:41:26.030108Z"
+  },
+  "upstream": "boykopovar/AnyPS5",
+  "version": 1
 }
